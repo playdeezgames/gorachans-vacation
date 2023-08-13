@@ -5,8 +5,11 @@
             Dim figlet As New FigletText(GameTitle) With {.Color = Color.Red, .Justification = Justify.Center}
             AnsiConsole.Write(figlet)
             Dim prompt As New SelectionPrompt(Of String) With {.Title = ""}
+            prompt.AddChoice(EmbarkText)
             prompt.AddChoice(QuitText)
             Select Case AnsiConsole.Prompt(prompt)
+                Case EmbarkText
+                    Embark.Handle()
                 Case QuitText
                     If Confirm.Handle(QuitPrompt) Then
                         Shame.Handle()
