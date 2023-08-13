@@ -9,6 +9,7 @@
             Select Case AnsiConsole.Prompt(prompt)
                 Case QuitText
                     If Confirm.Handle(QuitPrompt) Then
+                        Shame.Handle()
                         Exit Do
                     End If
             End Select
