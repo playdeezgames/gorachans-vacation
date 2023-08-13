@@ -1,5 +1,5 @@
 ﻿Friend Module TitleScreen
-    Friend Sub HandleTitleScreen()
+    Friend Sub Handle()
         Do
             AnsiConsole.Clear()
             Dim figlet As New FigletText(GameTitle) With {.Color = Color.Red, .Justification = Justify.Center}
@@ -8,7 +8,9 @@
             prompt.AddChoice(QuitText)
             Select Case AnsiConsole.Prompt(prompt)
                 Case QuitText
-                    Return
+                    If Confirm.Handle(QuitPrompt) Then
+                        Exit Do
+                    End If
             End Select
         Loop
     End Sub

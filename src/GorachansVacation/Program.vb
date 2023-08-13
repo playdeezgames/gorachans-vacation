@@ -1,8 +1,6 @@
-Imports System
-
 Module Program
     Sub Main(args As String())
         Console.Title = GameTitle
-        HandleTitleScreen()
+        TitleScreen.Handle()
     End Sub
 End Module
