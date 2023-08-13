@@ -24,4 +24,8 @@
     <Import Include="Spectre.Console" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GV.Persistence\GV.Persistence.vbproj" />
+  </ItemGroup>
+
 </Project>
