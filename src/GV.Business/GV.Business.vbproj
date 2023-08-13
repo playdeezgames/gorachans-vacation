@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>GV.Business</RootNamespace>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <ImportedNamespaces>GV.Persistence=False,Microsoft.VisualBasic=True,System=True,System.Collections=True,System.Collections.Generic=True,System.Diagnostics=True,System.Linq=True,System.Xml.Linq=True,System.Threading.Tasks=True,GV.Business=True</ImportedNamespaces>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GV.Persistence\GV.Persistence.vbproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Import Include="GV.Persistence" />
+  </ItemGroup>
+
+</Project>

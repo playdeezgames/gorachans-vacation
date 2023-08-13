@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <RootNamespace>GV.Persistence.Tests</RootNamespace>
+    <RootNamespace>GV.Business.Tests</RootNamespace>
     <TargetFramework>net6.0</TargetFramework>
 
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
     <OptionStrict>On</OptionStrict>
-    <ImportedNamespaces>GV.Persistence=False,Shouldly=False,Xunit=False,Microsoft.VisualBasic=True,System=True,System.Collections=True,System.Collections.Generic=True,System.Diagnostics=True,System.Linq=True,System.Xml.Linq=True,System.Threading.Tasks=True,GV.Persistence.Tests=True</ImportedNamespaces>
+    <ImportedNamespaces>GV.Business=False,Shouldly=False,Xunit=False,Microsoft.VisualBasic=True,System=True,System.Collections=True,System.Collections.Generic=True,System.Diagnostics=True,System.Linq=True,System.Xml.Linq=True,System.Threading.Tasks=True,GV.Business.Tests=True</ImportedNamespaces>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -33,13 +33,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GV.Persistence\GV.Persistence.vbproj" />
+    <Import Include="GV.Business" />
+    <Import Include="Shouldly" />
+    <Import Include="Xunit" />
   </ItemGroup>
 
   <ItemGroup>
-    <Import Include="GV.Persistence" />
-    <Import Include="Shouldly" />
-    <Import Include="Xunit" />
+    <ProjectReference Include="..\GV.Business\GV.Business.vbproj" />
   </ItemGroup>
 
 </Project>
