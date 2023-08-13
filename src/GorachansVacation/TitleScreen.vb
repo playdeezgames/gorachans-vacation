@@ -1,18 +1,28 @@
 ﻿Friend Module TitleScreen
-    Friend Sub Handle()
+    Friend Sub Handle(model As IWorldModel)
         Do
             AnsiConsole.Clear()
             Dim figlet As New FigletText(GameTitle) With {.Color = Color.Red, .Justification = Justify.Center}
             AnsiConsole.Write(figlet)
             Dim prompt As New SelectionPrompt(Of String) With {.Title = ""}
-            prompt.AddChoice(EmbarkText)
+            If model.HasWorld Then
+                prompt.AddChoice(OnwardText)
+                'prompt.AddChoice(ScumSaveText)
+                'prompt.AddChoice(SaveGameText)
+            Else
+                prompt.AddChoice(EmbarkText)
+                'prompt.AddChoice(ScumLoadText)
+                'prompt.AddChoice(LoadGameText)
+            End If
             prompt.AddChoice(QuitText)
             Select Case AnsiConsole.Prompt(prompt)
+                Case OnwardText
+                    Onward.Handle(model)
                 Case EmbarkText
-                    Embark.Handle()
+                    Embark.Handle(model)
                 Case QuitText
-                    If Confirm.Handle(QuitPrompt) Then
-                        Shame.Handle()
+                    If Confirm.Handle(model, QuitPrompt) Then
+                        Shame.Handle(model)
                         Exit Do
                     End If
             End Select

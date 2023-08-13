@@ -1,4 +1,5 @@
 ﻿Friend Module Constants
+    Friend Const OnwardText = "Onward!"
     Friend Const EmbarkText = "Embark!"
     Friend Const GameTitle = "Gorachan's Vacation IV: Just the Tip"
     Friend Const NoText = "No"

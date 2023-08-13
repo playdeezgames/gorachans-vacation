@@ -1,5 +1,5 @@
 ﻿Friend Module Shame
-    Friend Sub Handle()
+    Friend Sub Handle(model As IWorldModel)
         AnsiConsole.Clear()
         Dim figlet As New FigletText(ShameText) With {.Color = Color.Red, .Justification = Justify.Center}
         AnsiConsole.Write(figlet)

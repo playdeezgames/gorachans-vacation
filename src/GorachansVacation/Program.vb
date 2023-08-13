@@ -1,6 +1,7 @@
 Module Program
     Sub Main(args As String())
         Console.Title = GameTitle
-        TitleScreen.Handle()
+        Dim model As IWorldModel = New WorldModel
+        TitleScreen.Handle(model)
     End Sub
 End Module
