@@ -24,6 +24,7 @@
         Dim subject As IItem = CreateSubject()
         subject.ItemType.ShouldBe(ItemType)
         subject.Id.ShouldBe(0)
+        subject.World.ShouldNotBeNull
     End Sub
     <Fact>
     Sub recycle()

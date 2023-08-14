@@ -24,7 +24,7 @@
         outputter($"Stress: {avatar.Stress}/{avatar.MaximumStress}")
         Dim result As New Dictionary(Of String, Func(Of Boolean))
         For Each item In avatar.Items
-            If Not item.HasBeenUsedToday Then
+            If item.CanBeUsed AndAlso Not item.HasBeenUsedToday Then
                 result(item.UsageText) = item.Use
             End If
         Next

@@ -44,6 +44,12 @@
         End Set
     End Property
 
+    Public ReadOnly Property World As IWorld Implements IItem.World
+        Get
+            Return New World(WorldData)
+        End Get
+    End Property
+
     Public Sub Recycle() Implements IItem.Recycle
         ItemData.Recycled = True
     End Sub

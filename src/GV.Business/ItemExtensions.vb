@@ -13,4 +13,8 @@ Friend Module ItemExtensions
     Function Use(item As IItem) As Func(Of Boolean)
         Throw New NotImplementedException
     End Function
+    <Extension>
+    Function CanBeUsed(item As IItem) As Boolean
+        Return item.Flag(FlagTypes.CanBeUsed)
+    End Function
 End Module
