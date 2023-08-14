@@ -1,8 +1,7 @@
 ﻿Friend Module Embark
     Friend Sub Handle(model As IWorldModel)
-        AnsiConsole.Clear()
-        AnsiConsole.WriteLine("TODO: Make game go here!")
-        OkPrompt()
+        model.Start()
+        Onward.Handle(model)
     End Sub
 
 End Module
