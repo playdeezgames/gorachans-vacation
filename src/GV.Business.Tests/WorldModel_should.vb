@@ -22,6 +22,14 @@ Namespace GV.Business.Tests
             subject.AbandonWorld()
             subject.HasWorld.ShouldBeFalse()
         End Sub
+        <Fact>
+        Sub update_status()
+            Dim subject = CreateSubject()
+            Dim counter = 0
+            subject.StartWorld()
+            subject.UpdateStatus(Sub(x) counter += 1)
+            counter.ShouldBeGreaterThan(0)
+        End Sub
     End Class
 End Namespace
 

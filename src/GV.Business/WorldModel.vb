@@ -16,4 +16,8 @@
     Public Sub AbandonWorld() Implements IWorldModel.AbandonWorld
         world = Nothing
     End Sub
+
+    Public Sub UpdateStatus(outputter As Action(Of String)) Implements IWorldModel.UpdateStatus
+        outputter("Yer playin' the game!")
+    End Sub
 End Class
