@@ -10,6 +10,7 @@
 
     Public Sub StartWorld() Implements IWorldModel.StartWorld
         world = New World(New Data.WorldData)
+        WorldInitializer.Initialize(world)
     End Sub
 
     Public Sub AbandonWorld() Implements IWorldModel.AbandonWorld
