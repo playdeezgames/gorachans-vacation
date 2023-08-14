@@ -6,7 +6,13 @@ Namespace GV.Business.Tests
         <Fact>
         Sub check_world_status()
             Dim subject = CreateSubject()
-            subject.HasWorld.ShouldBe(False)
+            subject.HasWorld.ShouldBeFalse()
+        End Sub
+        <Fact>
+        Sub start_world()
+            Dim subject = CreateSubject()
+            subject.Start()
+            subject.HasWorld.ShouldBeTrue()
         End Sub
     End Class
 End Namespace
