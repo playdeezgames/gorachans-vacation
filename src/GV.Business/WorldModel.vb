@@ -18,6 +18,16 @@
     End Sub
 
     Public Function UpdateStatus(outputter As Action(Of String)) As IReadOnlyDictionary(Of String, Func(Of Boolean)) Implements IWorldModel.UpdateStatus
+        If world.HasMessages Then
+            For Each line In world.CurrentMessage.Lines
+                outputter(line.Text)
+            Next
+            world.DismissMessage()
+            Return New Dictionary(Of String, Func(Of Boolean)) From
+                {
+                    {"Ok", Function() True}
+                }
+        End If
         Dim avatar = world.Avatar
         outputter(avatar.Cell.Name)
         outputter($"Name: {avatar.Name}")
@@ -25,7 +35,7 @@
         Dim result As New Dictionary(Of String, Func(Of Boolean))
         For Each item In avatar.Items
             If item.CanBeUsed AndAlso Not item.HasBeenUsedToday Then
-                result(item.UsageText) = item.Use
+                result(item.UsageText) = item.Use(avatar)
             End If
         Next
         result("Next Day") = AddressOf NextDay

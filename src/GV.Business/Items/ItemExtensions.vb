@@ -10,11 +10,21 @@ Friend Module ItemExtensions
         Return item.Metadata(Metadatas.UsageText)
     End Function
     <Extension>
-    Function Use(item As IItem) As Func(Of Boolean)
-        Throw New NotImplementedException
+    Function Use(item As IItem, character As ICharacter) As Func(Of Boolean)
+        Return Function()
+                   Return item.Descriptor.Use(character, item)
+               End Function
     End Function
     <Extension>
     Function CanBeUsed(item As IItem) As Boolean
         Return item.Flag(FlagTypes.CanBeUsed)
     End Function
+    <Extension>
+    Function Descriptor(item As IItem) As ItemTypeDescriptor
+        Return ItemTypes.ToDescriptor(item.ItemType)
+    End Function
+    <Extension>
+    Friend Sub SetUsedToday(item As IItem, value As Boolean)
+        item.Flag(FlagTypes.UsedToday) = value
+    End Sub
 End Module

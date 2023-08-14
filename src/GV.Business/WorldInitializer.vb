@@ -13,6 +13,10 @@
         gorachan.SetMetadata(Metadatas.Name, "Gorachan")
         gorachan.SetStatistic(StatisticTypes.MaximumStress, 100)
         gorachan.SetStatistic(StatisticTypes.Stress, 100)
+        Dim item = world.CreateItem(ItemTypes.Nap)
+        item.SetMetadata(Metadatas.UsageText, "Take a nap!")
+        item.SetFlag(FlagTypes.CanBeUsed, True)
+        gorachan.AddItem(item)
         gorachan.Cell.AddCharacter(gorachan)
         world.Avatar = gorachan
     End Sub
