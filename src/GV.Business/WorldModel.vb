@@ -17,7 +17,8 @@
         world = Nothing
     End Sub
 
-    Public Sub UpdateStatus(outputter As Action(Of String)) Implements IWorldModel.UpdateStatus
+    Public Function UpdateStatus(outputter As Action(Of String)) As IReadOnlyDictionary(Of String, Func(Of Boolean)) Implements IWorldModel.UpdateStatus
         outputter("Yer playin' the game!")
-    End Sub
+        Return Nothing
+    End Function
 End Class

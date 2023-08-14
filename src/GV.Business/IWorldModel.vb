@@ -2,5 +2,5 @@
     ReadOnly Property HasWorld As Boolean
     Sub StartWorld()
     Sub AbandonWorld()
-    Sub UpdateStatus(outputter As Action(Of String))
+    Function UpdateStatus(outputter As Action(Of String)) As IReadOnlyDictionary(Of String, Func(Of Boolean))
 End Interface
