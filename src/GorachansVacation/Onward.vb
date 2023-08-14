@@ -1,13 +1,20 @@
 ﻿Friend Module Onward
     Friend Sub Handle(model As IWorldModel)
-        AnsiConsole.Clear()
-        model.UpdateStatus(Sub(x) AnsiConsole.MarkupLine(x))
-        Dim prompt As New SelectionPrompt(Of String) With {.Title = "[olive]Now What?[/]"}
-        'Populate choices
-        prompt.AddChoice(MainMenuText)
-        Select Case AnsiConsole.Prompt(prompt)
-            Case MainMenuText
-                Return
-        End Select
+        Do
+            AnsiConsole.Clear()
+            Dim choices = model.UpdateStatus(Sub(x) AnsiConsole.MarkupLine(x))
+            Dim prompt As New SelectionPrompt(Of String) With {.Title = "[olive]Now What?[/]"}
+            prompt.AddChoices(choices.Keys)
+            prompt.AddChoice(MainMenuText)
+            Dim answer = AnsiConsole.Prompt(prompt)
+            Select Case answer
+                Case MainMenuText
+                    Return
+                Case Else
+                    If Not choices(answer)() Then
+                        Exit Do
+                    End If
+            End Select
+        Loop
     End Sub
 End Module
