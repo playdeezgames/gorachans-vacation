@@ -13,4 +13,13 @@ Friend Module CharacterExtensions
     Function MaximumStress(character As ICharacter) As Integer
         Return character.Statistic(StatisticTypes.MaximumStress)
     End Function
+    <Extension>
+    Sub Move(character As ICharacter, deltaX As Integer, deltaY As Integer)
+        Dim nextX = character.Cell.Column + deltaX
+        Dim nextY = character.Cell.Row + deltaY
+        Dim nextCell = character.Map.GetCell(nextX, nextY)
+        character.Cell.RemoveCharacter(character)
+        nextCell.AddCharacter(character)
+        character.Cell = nextCell
+    End Sub
 End Module

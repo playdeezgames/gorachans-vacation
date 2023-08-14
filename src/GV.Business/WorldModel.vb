@@ -19,11 +19,18 @@
 
     Public Function UpdateStatus(outputter As Action(Of String)) As IReadOnlyDictionary(Of String, Func(Of Boolean)) Implements IWorldModel.UpdateStatus
         Dim avatar = world.Avatar
+        outputter(avatar.Cell.Name)
         outputter($"Name: {avatar.Name}")
         outputter($"Stress: {avatar.Stress}/{avatar.MaximumStress}")
         Return New Dictionary(Of String, Func(Of Boolean)) From
             {
-                {"Cool story, bro!", Function() False}
+                {"Next Day", AddressOf NextDay}
             }
+    End Function
+
+    Private Function NextDay() As Boolean
+        Dim avatar = world.Avatar
+        avatar.Move(1, 0)
+        Return True
     End Function
 End Class
