@@ -27,4 +27,10 @@ Friend Module ItemExtensions
     Friend Sub SetUsedToday(item As IItem, value As Boolean)
         item.Flag(FlagTypes.UsedToday) = value
     End Sub
+    <Extension>
+    Friend Sub Reset(item As IItem)
+        If item.CanBeUsed Then
+            item.SetUsedToday(False)
+        End If
+    End Sub
 End Module
