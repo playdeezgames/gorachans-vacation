@@ -11,7 +11,7 @@ Namespace GV.Business.Tests
         <Fact>
         Sub start_world()
             Dim subject = CreateSubject()
-            subject.Start()
+            subject.StartWorld()
             subject.HasWorld.ShouldBeTrue()
         End Sub
     End Class

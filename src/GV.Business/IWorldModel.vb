@@ -1,4 +1,4 @@
 ﻿Public Interface IWorldModel
     ReadOnly Property HasWorld As Boolean
-    Sub Start()
+    Sub StartWorld()
 End Interface

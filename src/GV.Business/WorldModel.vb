@@ -8,7 +8,7 @@
         End Get
     End Property
 
-    Public Sub Start() Implements IWorldModel.Start
+    Public Sub StartWorld() Implements IWorldModel.StartWorld
         world = New World(New Data.WorldData)
     End Sub
 End Class
