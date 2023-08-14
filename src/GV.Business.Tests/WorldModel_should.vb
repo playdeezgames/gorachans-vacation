@@ -27,8 +27,10 @@ Namespace GV.Business.Tests
             Dim subject = CreateSubject()
             Dim counter = 0
             subject.StartWorld()
-            subject.UpdateStatus(Sub(x) counter += 1)
+            Dim actual = subject.UpdateStatus(Sub(x) counter += 1)
             counter.ShouldBeGreaterThan(0)
+            actual.ShouldNotBeNull
+            actual.ShouldNotBeEmpty
         End Sub
     End Class
 End Namespace

@@ -19,6 +19,9 @@
 
     Public Function UpdateStatus(outputter As Action(Of String)) As IReadOnlyDictionary(Of String, Func(Of Boolean)) Implements IWorldModel.UpdateStatus
         outputter("Yer playin' the game!")
-        Return Nothing
+        Return New Dictionary(Of String, Func(Of Boolean)) From
+            {
+                {"Cool story, bro!", Function() False}
+            }
     End Function
 End Class
