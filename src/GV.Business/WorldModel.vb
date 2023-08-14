@@ -22,10 +22,14 @@
         outputter(avatar.Cell.Name)
         outputter($"Name: {avatar.Name}")
         outputter($"Stress: {avatar.Stress}/{avatar.MaximumStress}")
-        Return New Dictionary(Of String, Func(Of Boolean)) From
-            {
-                {"Next Day", AddressOf NextDay}
-            }
+        Dim result As New Dictionary(Of String, Func(Of Boolean))
+        For Each item In avatar.Items
+            If Not item.HasBeenUsedToday Then
+                result(item.UsageText) = item.Use
+            End If
+        Next
+        result("Next Day") = AddressOf NextDay
+        Return result
     End Function
 
     Private Function NextDay() As Boolean
