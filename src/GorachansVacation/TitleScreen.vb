@@ -4,9 +4,10 @@
             AnsiConsole.Clear()
             Dim figlet As New FigletText(GameTitle) With {.Color = Color.Red, .Justification = Justify.Center}
             AnsiConsole.Write(figlet)
-            Dim prompt As New SelectionPrompt(Of String) With {.Title = ""}
+            Dim prompt As New SelectionPrompt(Of String) With {.Title = MainMenuTitle}
             If model.HasWorld Then
                 prompt.AddChoice(OnwardText)
+                prompt.AddChoice(AbandonGameText)
                 'prompt.AddChoice(ScumSaveText)
                 'prompt.AddChoice(SaveGameText)
             Else
@@ -16,12 +17,14 @@
             End If
             prompt.AddChoice(QuitText)
             Select Case AnsiConsole.Prompt(prompt)
+                Case AbandonGameText
+                    AbandonGame.Handle(model)
                 Case OnwardText
                     Onward.Handle(model)
                 Case EmbarkText
                     Embark.Handle(model)
                 Case QuitText
-                    If Confirm.Handle(model, QuitPrompt) Then
+                    If Confirm.Handle(QuitPrompt) Then
                         Shame.Handle(model)
                         Exit Do
                     End If
