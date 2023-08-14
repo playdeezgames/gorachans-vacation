@@ -11,4 +11,8 @@
     Public Sub StartWorld() Implements IWorldModel.StartWorld
         world = New World(New Data.WorldData)
     End Sub
+
+    Public Sub AbandonWorld() Implements IWorldModel.AbandonWorld
+        world = Nothing
+    End Sub
 End Class

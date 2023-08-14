@@ -14,6 +14,14 @@ Namespace GV.Business.Tests
             subject.StartWorld()
             subject.HasWorld.ShouldBeTrue()
         End Sub
+        <Fact>
+        Sub abandon_world()
+            Dim subject = CreateSubject()
+            subject.StartWorld()
+            subject.HasWorld.ShouldBeTrue()
+            subject.AbandonWorld()
+            subject.HasWorld.ShouldBeFalse()
+        End Sub
     End Class
 End Namespace
 
