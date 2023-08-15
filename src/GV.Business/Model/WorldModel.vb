@@ -25,6 +25,11 @@
         If avatar.Cell.IsBackToWork Then
             Return ShowBackToWork(outputter)
         End If
+        Return ShowStatus(outputter)
+    End Function
+
+    Private Function ShowStatus(outputter As Action(Of String)) As IReadOnlyDictionary(Of String, Func(Of Boolean))
+        Dim avatar = world.Avatar
         outputter(avatar.Cell.Name)
         outputter($"Name: {avatar.Name}")
         outputter($"Stress: {avatar.Stress}/{avatar.MaximumStress}")
