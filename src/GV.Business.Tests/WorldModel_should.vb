@@ -32,6 +32,12 @@ Namespace GV.Business.Tests
             actual.ShouldNotBeNull
             actual.ShouldNotBeEmpty
         End Sub
+        <Fact>
+        Sub save_game()
+            Dim subject = CreateSubject()
+            subject.StartWorld()
+            subject.Save().ShouldNotBeNull
+        End Sub
     End Class
 End Namespace
 

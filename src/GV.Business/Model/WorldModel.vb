@@ -42,6 +42,10 @@
         Return result
     End Function
 
+    Public Function Save() As String Implements IWorldModel.Save
+        Return world.SerializedData
+    End Function
+
     Private Function NextDay() As Boolean
         Dim avatar = world.Avatar
         avatar.Move(1, 0)
