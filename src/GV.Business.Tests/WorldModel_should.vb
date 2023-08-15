@@ -38,6 +38,12 @@ Namespace GV.Business.Tests
             subject.StartWorld()
             subject.Save().ShouldNotBeNull
         End Sub
+        <Fact>
+        Sub load_game()
+            Dim subject = CreateSubject()
+            subject.Load("{}").ShouldBeTrue
+            subject.HasWorld.ShouldBeTrue
+        End Sub
     End Class
 End Namespace
 
