@@ -8,8 +8,8 @@
             If model.HasWorld Then
                 prompt.AddChoice(OnwardText)
                 prompt.AddChoice(AbandonGameText)
-                'prompt.AddChoice(ScumSaveText)
-                'prompt.AddChoice(SaveGameText)
+                prompt.AddChoice(ScumSaveText)
+                prompt.AddChoice(SaveGameText)
             Else
                 prompt.AddChoice(EmbarkText)
                 'prompt.AddChoice(ScumLoadText)
@@ -17,6 +17,10 @@
             End If
             prompt.AddChoice(QuitText)
             Select Case AnsiConsole.Prompt(prompt)
+                Case SaveGameText
+                    SaveGame.Handle(model)
+                Case ScumSaveText
+                    ScumSave.Handle(model)
                 Case AbandonGameText
                     AbandonGame.Handle(model)
                 Case OnwardText

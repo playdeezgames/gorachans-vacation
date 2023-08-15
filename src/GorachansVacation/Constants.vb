@@ -1,7 +1,9 @@
 ﻿Friend Module Constants
     Friend Const AbandonGameText = "Abandon Game"
+    Friend Const SaveGameNamePrompt = "[olive]Save Game Name:[/]"
     Friend Const ConfirmAbandonPrompt = "[red]Are you sure you want to abandon the game?[/]"
     Friend Const EmbarkText = "Embark!"
+    Friend Const GameSavedMessage = "[lime]Game Saved![/]"
     Friend Const GameTitle = "Gorachan's Vacation IV: Just the Tip"
     Friend Const MainMenuText = "Main Menu"
     Friend Const MainMenuTitle = "[olive]Main Menu:[/]"
@@ -10,6 +12,8 @@
     Friend Const OnwardText = "Onward!"
     Friend Const QuitPrompt = "[red]Are you sure you want to quit?[/]"
     Friend Const QuitText = "Quit"
+    Friend Const SaveGameText = "Save Game"
+    Friend Const ScumSaveText = "Scum Save"
     Friend Const ShameText = "No hugs for you, then!"
     Friend Const YesText = "Yes"
 End Module
