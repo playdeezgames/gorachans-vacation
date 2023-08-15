@@ -118,9 +118,9 @@ Public Class World
         WorldData.Statistics(statisticType) = value
     End Sub
 
-    Public Shared Function Load(filename As String) As IWorld
+    Public Shared Function Load(serializedData As String) As IWorld
         Try
-            Return New World(JsonSerializer.Deserialize(Of WorldData)(File.ReadAllText(filename)))
+            Return New World(JsonSerializer.Deserialize(Of WorldData)(serializedData))
         Catch ex As Exception
             Return Nothing
         End Try

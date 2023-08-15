@@ -47,15 +47,11 @@
     End Function
 
     Public Function Load(serializedData As String) As Boolean Implements IWorldModel.Load
-        Dim filename = Guid.NewGuid.ToString()
         Try
-            System.IO.File.WriteAllText(filename, serializedData)
-            world = Persistence.World.Load(filename)
+            world = Persistence.World.Load(serializedData)
             Return True
         Catch ex As Exception
             Return False
-        Finally
-            System.IO.File.Delete(filename)
         End Try
     End Function
 

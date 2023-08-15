@@ -78,11 +78,17 @@ Public Class World_should
         subject.CurrentMessage.ShouldBeNull
         subject.HasMessages.ShouldBeFalse
     End Sub
+    Const EmptyWorldData = "{""Maps"":[],""Characters"":[],""AvatarCharacterId"":null,""Messages"":[],""Items"":[],""Statistics"":{},""Flags"":[],""Metadatas"":{}}"
     <Fact>
     Sub serialize_data()
         Dim subject As IWorld = New World(New Data.WorldData)
         Dim actual = subject.SerializedData
-        actual.ShouldBe("{""Maps"":[],""Characters"":[],""AvatarCharacterId"":null,""Messages"":[],""Items"":[],""Statistics"":{},""Flags"":[],""Metadatas"":{}}")
+        actual.ShouldBe(EmptyWorldData)
+    End Sub
+    <Fact>
+    Sub deserialize_data()
+        Dim subject As IWorld = World.Load(EmptyWorldData)
+        subject.Avatar.ShouldBeNull
     End Sub
 End Class
 
