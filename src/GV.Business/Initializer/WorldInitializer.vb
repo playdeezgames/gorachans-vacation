@@ -16,11 +16,23 @@
         gorachan.SetMetadata(Metadatas.Name, "Gorachan")
         gorachan.SetStatistic(StatisticTypes.MaximumStress, 100)
         gorachan.SetStatistic(StatisticTypes.Stress, 100)
+        AddNap(world, gorachan)
+        AddBalconyInspection(world, gorachan)
+        gorachan.Cell.AddCharacter(gorachan)
+        world.Avatar = gorachan
+    End Sub
+
+    Private Sub AddBalconyInspection(world As IWorld, gorachan As ICharacter)
+        Dim item = world.CreateItem(ItemTypes.InspectBalcony)
+        item.SetMetadata(Metadatas.UsageText, "Inspect Balcony")
+        item.SetFlag(FlagTypes.CanBeUsed, True)
+        gorachan.AddItem(item)
+    End Sub
+
+    Private Sub AddNap(world As IWorld, gorachan As ICharacter)
         Dim item = world.CreateItem(ItemTypes.Nap)
         item.SetMetadata(Metadatas.UsageText, "Take a nap!")
         item.SetFlag(FlagTypes.CanBeUsed, True)
         gorachan.AddItem(item)
-        gorachan.Cell.AddCharacter(gorachan)
-        world.Avatar = gorachan
     End Sub
 End Module
