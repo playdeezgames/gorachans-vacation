@@ -10,7 +10,7 @@ Friend Module CharacterExtensions
         character.SetStatistic(StatisticTypes.Withdrawal, Math.Max(0, withdrawal))
     End Sub
     <Extension>
-    Private Sub AddWithdrawal(character As ICharacter, delta As Integer)
+    Friend Sub AddWithdrawal(character As ICharacter, delta As Integer)
         character.SetWithdrawal(character.Withdrawal + delta)
     End Sub
     <Extension>
