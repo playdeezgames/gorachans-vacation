@@ -11,6 +11,7 @@
             model.Load(System.IO.File.ReadAllText(saveGameName))
             AnsiConsole.MarkupLine(GameLoadedMessage)
             OkPrompt()
+            Onward.Handle(model)
         Catch ex As Exception
             AnsiConsole.MarkupLine(LoadFailedMessage)
             OkPrompt()
