@@ -1,10 +1,13 @@
 ﻿Friend Module WorldInitializer
-    Private ReadOnly VacationMapSize As (days As Integer, rows As Integer) = (10, 1)
+    Private ReadOnly VacationMapSize As (days As Integer, rows As Integer) = (11, 1)
     Friend Sub Initialize(world As IWorld)
         Dim vacationMap = world.CreateMap(MapTypes.Vacation, VacationMapSize, TerrainTypes.Empty)
-        For Each day In Enumerable.Range(0, VacationMapSize.days)
+        For Each day In Enumerable.Range(0, VacationMapSize.days - 1)
             vacationMap.GetCell(day, 0).SetMetadata(Metadatas.Name, $"Day {day + 1}")
         Next
+        Dim endDay = vacationMap.GetCell(VacationMapSize.days - 1, 0)
+        endDay.SetMetadata(Metadatas.Name, "Back to Work!")
+        endDay.SetFlag(FlagTypes.BackToWork, True)
         InitializeGorachan(world, vacationMap)
     End Sub
 

@@ -19,16 +19,12 @@
 
     Public Function UpdateStatus(outputter As Action(Of String)) As IReadOnlyDictionary(Of String, Func(Of Boolean)) Implements IWorldModel.UpdateStatus
         If world.HasMessages Then
-            For Each line In world.CurrentMessage.Lines
-                outputter(line.Text)
-            Next
-            world.DismissMessage()
-            Return New Dictionary(Of String, Func(Of Boolean)) From
-                {
-                    {"Ok", Function() True}
-                }
+            Return ShowMessage(outputter)
         End If
         Dim avatar = world.Avatar
+        If avatar.Cell.IsBackToWork Then
+            Return ShowBackToWork(outputter)
+        End If
         outputter(avatar.Cell.Name)
         outputter($"Name: {avatar.Name}")
         outputter($"Stress: {avatar.Stress}/{avatar.MaximumStress}")
@@ -40,6 +36,26 @@
         Next
         result("Next Day") = AddressOf NextDay
         Return result
+    End Function
+
+    Private Function ShowBackToWork(outputter As Action(Of String)) As IReadOnlyDictionary(Of String, Func(Of Boolean))
+        outputter("Back to work!")
+        outputter($"Final stress level: {world.Avatar.Stress}")
+        Return New Dictionary(Of String, Func(Of Boolean)) From
+            {
+                {"All done!", Function() False}
+            }
+    End Function
+
+    Private Function ShowMessage(outputter As Action(Of String)) As IReadOnlyDictionary(Of String, Func(Of Boolean))
+        For Each line In world.CurrentMessage.Lines
+            outputter(line.Text)
+        Next
+        world.DismissMessage()
+        Return New Dictionary(Of String, Func(Of Boolean)) From
+            {
+                {"Ok", Function() True}
+            }
     End Function
 
     Public Function Save() As String Implements IWorldModel.Save
