@@ -79,6 +79,7 @@
     Private Function NextDay() As Boolean
         Dim avatar = world.Avatar
         avatar.Move(1, 0)
+        avatar.Reset()
         For Each item In avatar.Items
             item.Reset()
         Next

@@ -2,6 +2,10 @@
 
 Friend Module CharacterExtensions
     <Extension>
+    Friend Sub Reset(character As ICharacter)
+
+    End Sub
+    <Extension>
     Friend Function Name(character As ICharacter) As String
         Return character.Metadata(Metadatas.Name)
     End Function
