@@ -12,21 +12,25 @@
                 prompt.AddChoice(SaveGameText)
             Else
                 prompt.AddChoice(EmbarkText)
-                'prompt.AddChoice(ScumLoadText)
-                'prompt.AddChoice(LoadGameText)
+                prompt.AddChoice(ScumLoadText)
+                prompt.AddChoice(LoadGameText)
             End If
             prompt.AddChoice(QuitText)
             Select Case AnsiConsole.Prompt(prompt)
+                Case AbandonGameText
+                    AbandonGame.Handle(model)
                 Case SaveGameText
                     SaveGame.Handle(model)
                 Case ScumSaveText
                     ScumSave.Handle(model)
-                Case AbandonGameText
-                    AbandonGame.Handle(model)
                 Case OnwardText
                     Onward.Handle(model)
                 Case EmbarkText
                     Embark.Handle(model)
+                Case ScumLoadText
+                    ScumLoad.Handle(model)
+                Case LoadGameText
+                    LoadGame.Handle(model)
                 Case QuitText
                     If Confirm.Handle(QuitPrompt) Then
                         Shame.Handle(model)
