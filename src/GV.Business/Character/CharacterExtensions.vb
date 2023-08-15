@@ -38,15 +38,6 @@ Friend Module CharacterExtensions
         Return character.Statistic(StatisticTypes.MaximumStress)
     End Function
     <Extension>
-    Friend Sub Move(character As ICharacter, deltaX As Integer, deltaY As Integer)
-        Dim nextX = character.Cell.Column + deltaX
-        Dim nextY = character.Cell.Row + deltaY
-        Dim nextCell = character.Map.GetCell(nextX, nextY)
-        character.Cell.RemoveCharacter(character)
-        nextCell.AddCharacter(character)
-        character.Cell = nextCell
-    End Sub
-    <Extension>
     Friend Sub AddStress(character As ICharacter, delta As Integer)
         character.SetStress(character.Stress + delta)
     End Sub
@@ -55,7 +46,15 @@ Friend Module CharacterExtensions
         character.SetStatistic(StatisticTypes.Stress, Math.Clamp(stress, 0, character.MaximumStress))
     End Sub
     <Extension>
-    Friend Function Cigarettes(character As ICharacter) As Integer
-        Return 0
+    Friend Sub AddDay(character As ICharacter)
+        character.SetStatistic(StatisticTypes.Day, character.Statistic(StatisticTypes.Day) + 1)
+    End Sub
+    <Extension>
+    Friend Function Day(character As ICharacter) As Integer
+        Return character.TryGetStatistic(StatisticTypes.Day)
+    End Function
+    <Extension>
+    Friend Function IsBackToWork(character As ICharacter) As Boolean
+        Return character.Statistic(StatisticTypes.Day) > 10
     End Function
 End Module

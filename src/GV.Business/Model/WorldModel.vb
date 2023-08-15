@@ -22,7 +22,7 @@
             Return ShowMessage(outputter)
         End If
         Dim avatar = world.Avatar
-        If avatar.Cell.IsBackToWork Then
+        If avatar.IsBackToWork Then
             Return ShowBackToWork(outputter)
         End If
         Return ShowStatus(outputter)
@@ -30,7 +30,8 @@
 
     Private Function ShowStatus(outputter As Action(Of String)) As IReadOnlyDictionary(Of String, Func(Of Boolean))
         Dim avatar = world.Avatar
-        outputter(avatar.Cell.Name)
+        outputter($"Day: {avatar.Day}")
+        outputter($"Location: {avatar.Cell.Name}")
         outputter($"Name: {avatar.Name}")
         outputter($"Stress: {avatar.Stress}/{avatar.MaximumStress}")
         Dim result As New Dictionary(Of String, Func(Of Boolean))
@@ -78,7 +79,7 @@
 
     Private Function NextDay() As Boolean
         Dim avatar = world.Avatar
-        avatar.Move(1, 0)
+        avatar.AddDay()
         avatar.Reset()
         For Each item In avatar.Items
             item.Reset()

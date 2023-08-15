@@ -1,13 +1,8 @@
 ﻿Friend Module WorldInitializer
-    Private ReadOnly VacationMapSize As (days As Integer, rows As Integer) = (11, 1)
+    Private ReadOnly VacationMapSize As (columns As Integer, rows As Integer) = (1, 1)
     Friend Sub Initialize(world As IWorld)
         Dim vacationMap = world.CreateMap(MapTypes.Vacation, VacationMapSize, TerrainTypes.Empty)
-        For Each day In Enumerable.Range(0, VacationMapSize.days - 1)
-            vacationMap.GetCell(day, 0).SetMetadata(Metadatas.Name, $"Day {day + 1}")
-        Next
-        Dim endDay = vacationMap.GetCell(VacationMapSize.days - 1, 0)
-        endDay.SetMetadata(Metadatas.Name, "Back to Work!")
-        endDay.SetFlag(FlagTypes.BackToWork, True)
+        vacationMap.GetCell(0, 0).SetMetadata(Metadatas.Name, "Gorachan's Apartment")
         InitializeGorachan(world, vacationMap)
     End Sub
 
@@ -16,6 +11,7 @@
         gorachan.SetMetadata(Metadatas.Name, "Gorachan")
         gorachan.SetStatistic(StatisticTypes.MaximumStress, 100)
         gorachan.SetStatistic(StatisticTypes.Stress, 100)
+        gorachan.SetStatistic(StatisticTypes.Day, 1)
         AddNap(world, gorachan)
         AddBalconyInspection(world, gorachan)
         gorachan.Cell.AddCharacter(gorachan)
