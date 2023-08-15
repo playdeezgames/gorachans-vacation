@@ -2,6 +2,10 @@
 
 Friend Module CharacterExtensions
     <Extension>
+    Friend Function DurryCount(character As ICharacter) As Integer
+        Return character.Items.Sum(Function(x) x.DurryCount)
+    End Function
+    <Extension>
     Private Function Withdrawal(character As ICharacter) As Integer
         Return character.TryGetStatistic(StatisticTypes.Withdrawal, 0)
     End Function
@@ -50,4 +54,8 @@ Friend Module CharacterExtensions
     Private Sub SetStress(character As ICharacter, stress As Integer)
         character.SetStatistic(StatisticTypes.Stress, Math.Clamp(stress, 0, character.MaximumStress))
     End Sub
+    <Extension>
+    Friend Function Cigarettes(character As ICharacter) As Integer
+        Return 0
+    End Function
 End Module

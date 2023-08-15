@@ -2,6 +2,10 @@
 
 Friend Module ItemExtensions
     <Extension>
+    Function DurryCount(item As IItem) As Integer
+        Return item.TryGetStatistic(StatisticTypes.Durries)
+    End Function
+    <Extension>
     Function HasBeenUsedToday(item As IItem) As Boolean
         Return item.Flag(FlagTypes.UsedToday)
     End Function

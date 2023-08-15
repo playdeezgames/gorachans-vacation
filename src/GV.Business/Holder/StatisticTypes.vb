@@ -1,5 +1,6 @@
 ﻿Friend Module StatisticTypes
-    Friend Const Stress = "Stress"
+    Friend Const Durries = "Durries"
     Friend Const MaximumStress = "MaximumStress"
+    Friend Const Stress = "Stress"
     Friend Const Withdrawal = "Withdrawal"
 End Module
