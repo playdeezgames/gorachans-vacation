@@ -47,8 +47,16 @@
         AddNap(world, character)
         AddBalconyInspection(world, character)
         AddBuyDurries(world, character)
+        AddWithdrawYen(world, character)
         character.Cell.AddCharacter(character)
         world.Avatar = character
+    End Sub
+
+    Private Sub AddWithdrawYen(world As IWorld, character As ICharacter)
+        Dim item = world.CreateItem(ItemTypes.WithdrawYen)
+        item.SetMetadata(Metadatas.UsageText, "Withdraw ¥10,000")
+        item.SetFlag(FlagTypes.CanBeUsed, True)
+        character.AddItem(item)
     End Sub
 
     Private Sub AddBuyDurries(world As IWorld, character As ICharacter)

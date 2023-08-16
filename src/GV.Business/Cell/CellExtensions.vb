@@ -2,6 +2,10 @@
 
 Friend Module CellExtensions
     <Extension>
+    Friend Function IsATM(cell As ICell) As Boolean
+        Return cell.Flag(FlagTypes.ATM)
+    End Function
+    <Extension>
     Friend Function HasBed(cell As ICell) As Boolean
         Return cell.Flag(FlagTypes.Bed)
     End Function
