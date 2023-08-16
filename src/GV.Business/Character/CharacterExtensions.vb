@@ -67,8 +67,24 @@ Friend Module CharacterExtensions
         character.SetStress(character.Stress + delta)
     End Sub
     <Extension>
+    Friend Function OverStress(character As ICharacter) As Integer
+        Return character.TryGetStatistic(StatisticTypes.OverStress)
+    End Function
+    <Extension>
+    Friend Sub AddOverStress(character As ICharacter, delta As Integer)
+        character.SetOverStress(character.OverStress + delta)
+    End Sub
+    <Extension>
+    Private Sub SetOverStress(character As ICharacter, overStress As Integer)
+        character.SetStatistic(StatisticTypes.OverStress, overStress)
+    End Sub
+    <Extension>
     Private Sub SetStress(character As ICharacter, stress As Integer)
-        character.SetStatistic(StatisticTypes.Stress, Math.Clamp(stress, 0, character.MaximumStress))
+        Dim clampedStress = Math.Clamp(stress, 0, character.MaximumStress)
+        If stress > clampedStress Then
+            character.AddOverStress(stress - clampedStress)
+        End If
+        character.SetStatistic(StatisticTypes.Stress, clampedStress)
     End Sub
     <Extension>
     Friend Sub AddDay(character As ICharacter)

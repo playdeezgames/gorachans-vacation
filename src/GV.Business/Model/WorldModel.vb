@@ -56,6 +56,18 @@
     Private Function ShowBackToWork(outputter As Action(Of String)) As IReadOnlyDictionary(Of String, Func(Of Boolean))
         outputter("Back to work!")
         outputter($"Final stress level: {world.Avatar.Stress}")
+        If world.Avatar.OverStress > 0 Then
+            outputter($"Overstress: {world.Avatar.OverStress}")
+        End If
+        'TODO: grading S,A,B,C,D, F
+        'S: stress=0
+        'A: stress<=25
+        'B: stress<=50
+        'C: stress<=75
+        'D: stress<=100
+        'F: D, plus overstress
+        'overstress<0, +1 rank
+        'overstress>0, -1 rank
         Return New Dictionary(Of String, Func(Of Boolean)) From
             {
                 {"All done!", Function() False}
