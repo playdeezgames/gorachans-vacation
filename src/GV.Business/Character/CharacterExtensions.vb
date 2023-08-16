@@ -2,6 +2,10 @@
 
 Friend Module CharacterExtensions
     <Extension>
+    Friend Function OtherCells(character As ICharacter) As IEnumerable(Of ICell)
+        Return character.Map.Cells.Where(Function(x) x.Id <> character.Cell.Id)
+    End Function
+    <Extension>
     Friend Function DurryCount(character As ICharacter) As Integer
         Return character.Items.Sum(Function(x) x.DurryCount)
     End Function

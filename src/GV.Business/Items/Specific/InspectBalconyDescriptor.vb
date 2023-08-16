@@ -6,6 +6,7 @@
             character.World.CreateMessage().
                 AddLine(0, $"{character.Name} has no durries.").
                 AddLine(0, $"Mebbe {character.Name} should head to the Kombini to get some.")
+            character.Map.Cells.Single(Function(x) x.Flag(FlagTypes.Kombini)).Flag(FlagTypes.KnownLocation) = True
             Return True
         End If
         If Not character.Flag(FlagTypes.InspectedBalcony) Then

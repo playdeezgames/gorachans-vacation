@@ -40,6 +40,9 @@
                 result(item.UsageText) = item.Use(avatar)
             End If
         Next
+        For Each cell In avatar.OtherCells.Where(Function(x) x.IsKnownLocation)
+            result(cell.MoveToText) = cell.MoveTo(avatar)
+        Next
         result("Next Day") = AddressOf NextDay
         Return result
     End Function
