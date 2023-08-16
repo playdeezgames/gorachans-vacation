@@ -4,4 +4,5 @@
     Friend Const MaximumStress = "MaximumStress"
     Friend Const Stress = "Stress"
     Friend Const Withdrawal = "Withdrawal"
+    Friend Const Yen = "Yen"
 End Module

@@ -5,5 +5,6 @@
     Friend Const InspectedBalcony = "InspectedBalcony"
     Friend Const KnownLocation = "KnownLocation"
     Friend Const Kombini = "Kombini"
+    Friend Const SellsDurries = "SellsDurries"
     Friend Const UsedToday = "UsedToday"
 End Module

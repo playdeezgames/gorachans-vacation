@@ -2,12 +2,33 @@
 
 Friend Module CharacterExtensions
     <Extension>
+    Friend Sub AddDurries(character As ICharacter, delta As Integer)
+        character.SetDurries(character.DurryCount + delta)
+    End Sub
+    <Extension>
+    Private Sub SetDurries(character As ICharacter, durries As Integer)
+        character.SetStatistic(StatisticTypes.Durries, Math.Max(0, durries))
+    End Sub
+    <Extension>
+    Friend Sub AddYen(character As ICharacter, delta As Integer)
+        character.SetYen(character.Yen + delta)
+    End Sub
+    <Extension>
+    Private Sub SetYen(character As ICharacter, yen As Integer)
+        character.SetStatistic(StatisticTypes.Yen, Math.Max(yen, 0))
+    End Sub
+    <Extension>
+    Friend Function Yen(character As ICharacter) As Integer
+        '¥
+        Return character.TryGetStatistic(StatisticTypes.Yen)
+    End Function
+    <Extension>
     Friend Function OtherCells(character As ICharacter) As IEnumerable(Of ICell)
         Return character.Map.Cells.Where(Function(x) x.Id <> character.Cell.Id)
     End Function
     <Extension>
     Friend Function DurryCount(character As ICharacter) As Integer
-        Return character.Items.Sum(Function(x) x.DurryCount)
+        Return character.TryGetStatistic(StatisticTypes.Durries)
     End Function
     <Extension>
     Private Function Withdrawal(character As ICharacter) As Integer

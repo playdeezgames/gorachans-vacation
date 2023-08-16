@@ -13,6 +13,7 @@
         Dim cell = map.GetCell(KombiniLocation.column, KombiniLocation.row)
         cell.SetName("Kombini")
         cell.Metadata(Metadatas.MoveToText) = "Go to Kombini"
+        cell.Flag(FlagTypes.SellsDurries) = True
         cell.Flag(FlagTypes.Kombini) = True
         Return cell
     End Function
@@ -28,15 +29,23 @@
     End Function
 
     Private Sub InitializeGorachan(world As IWorld, cell As ICell)
-        Dim gorachan = world.CreateCharacter(CharacterTypes.Gorachan, cell)
-        gorachan.SetMetadata(Metadatas.Name, "Gorachan")
-        gorachan.SetStatistic(StatisticTypes.MaximumStress, 100)
-        gorachan.SetStatistic(StatisticTypes.Stress, 100)
-        gorachan.SetStatistic(StatisticTypes.Day, 1)
-        AddNap(world, gorachan)
-        AddBalconyInspection(world, gorachan)
-        gorachan.Cell.AddCharacter(gorachan)
-        world.Avatar = gorachan
+        Dim character = world.CreateCharacter(CharacterTypes.Gorachan, cell)
+        character.SetMetadata(Metadatas.Name, "Gorachan")
+        character.SetStatistic(StatisticTypes.MaximumStress, 100)
+        character.SetStatistic(StatisticTypes.Stress, 100)
+        character.SetStatistic(StatisticTypes.Day, 1)
+        AddNap(world, character)
+        AddBalconyInspection(world, character)
+        AddBuyDurries(world, character)
+        character.Cell.AddCharacter(character)
+        world.Avatar = character
+    End Sub
+
+    Private Sub AddBuyDurries(world As IWorld, character As ICharacter)
+        Dim item = world.CreateItem(ItemTypes.BuyDurries)
+        item.SetMetadata(Metadatas.UsageText, "Buy Durries")
+        item.SetFlag(FlagTypes.CanBeUsed, True)
+        character.AddItem(item)
     End Sub
 
     Private Sub AddBalconyInspection(world As IWorld, character As ICharacter)
