@@ -13,6 +13,7 @@
             character.AddWithdrawal(-1)
         End If
         character.Flag(FlagTypes.InspectedBalcony) = True
+        character.AddDurries(-1)
         character.World.CreateMessage().AddLine(0, $"{character.Name} inspects the balcony.")
         Return True
     End Function

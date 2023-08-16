@@ -29,19 +29,25 @@
     End Function
 
     Private Function ShowStatus(outputter As Action(Of String)) As IReadOnlyDictionary(Of String, Func(Of Boolean))
-        Dim avatar = world.Avatar
-        outputter($"Day: {avatar.Day}")
-        outputter($"Location: {avatar.Cell.Name}")
-        outputter($"Name: {avatar.Name}")
-        outputter($"Stress: {avatar.Stress}/{avatar.MaximumStress}")
+        Dim character = world.Avatar
+        outputter($"Day: {character.Day}")
+        outputter($"Location: {character.Cell.Name}")
+        outputter($"Name: {character.Name}")
+        outputter($"Stress: {character.Stress}/{character.MaximumStress}")
+        If character.Yen > 0 Then
+            outputter($"Wallet: ¥{character.Yen:N0}")
+        End If
+        If character.DurryCount > 0 Then
+            outputter($"Durries: {character.DurryCount}")
+        End If
         Dim result As New Dictionary(Of String, Func(Of Boolean))
-        For Each item In avatar.Items
-            If item.CanBeUsed(avatar) AndAlso Not item.HasBeenUsedToday Then
-                result(item.UsageText) = item.Use(avatar)
+        For Each item In character.Items
+            If item.CanBeUsed(character) AndAlso Not item.HasBeenUsedToday Then
+                result(item.UsageText) = item.Use(character)
             End If
         Next
-        For Each cell In avatar.OtherCells.Where(Function(x) x.IsKnownLocation)
-            result(cell.MoveToText) = cell.MoveTo(avatar)
+        For Each cell In character.OtherCells.Where(Function(x) x.IsKnownLocation)
+            result(cell.MoveToText) = cell.MoveTo(character)
         Next
         result("Next Day") = AddressOf NextDay
         Return result
