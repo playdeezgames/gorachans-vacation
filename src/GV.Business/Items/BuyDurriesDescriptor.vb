@@ -8,6 +8,7 @@
             character.World.CreateMessage.
                 AddLine(0, $"Durries cost ¥{Price}, and {character.Name} doesn't have enough.").
                 AddLine(0, $"Maybe {character.Name} needs to visit an ATM.")
+            character.Map.Cells.Single(Function(x) x.Flag(FlagTypes.ATM)).SetFlag(FlagTypes.KnownLocation, True)
             Return True
         End If
         character.AddYen(-Price)

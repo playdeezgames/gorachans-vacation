@@ -1,13 +1,23 @@
 ﻿Friend Module WorldInitializer
-    Private ReadOnly MapSize As (columns As Integer, rows As Integer) = (2, 1)
+    Private ReadOnly MapSize As (columns As Integer, rows As Integer) = (3, 1)
     Private ReadOnly ApartmentLocation As (column As Integer, row As Integer) = (0, 0)
     Private ReadOnly KombiniLocation As (column As Integer, row As Integer) = (1, 0)
+    Private ReadOnly ATMLocation As (column As Integer, row As Integer) = (2, 0)
     Friend Sub Initialize(world As IWorld)
         Dim map = world.CreateMap(MapTypes.Vacation, MapSize, TerrainTypes.Empty)
         Dim apartmentCell As ICell = InitializeApartment(map)
         Dim kombiniCell As ICell = InitializeKombini(map)
+        Dim atmCell As ICell = InitializeATM(map)
         InitializeGorachan(world, apartmentCell)
     End Sub
+
+    Private Function InitializeATM(map As IMap) As ICell
+        Dim cell = map.GetCell(ATMLocation.column, ATMLocation.row)
+        cell.SetName("ATM")
+        cell.Metadata(Metadatas.MoveToText) = "Go to ATM"
+        cell.Flag(FlagTypes.ATM) = True
+        Return cell
+    End Function
 
     Private Function InitializeKombini(map As IMap) As ICell
         Dim cell = map.GetCell(KombiniLocation.column, KombiniLocation.row)

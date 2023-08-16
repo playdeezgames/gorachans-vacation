@@ -1,4 +1,5 @@
 ﻿Friend Module FlagTypes
+    Friend Const ATM = "ATM"
     Friend Const Balcony = "Balcony"
     Friend Const Bed = "Bed"
     Friend Const CanBeUsed = "CanBeUsed"
