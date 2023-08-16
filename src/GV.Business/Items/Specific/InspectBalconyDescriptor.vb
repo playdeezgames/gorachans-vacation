@@ -16,4 +16,8 @@
         character.World.CreateMessage().AddLine(0, $"{character.Name} inspects the balcony.")
         Return True
     End Function
+
+    Friend Overrides Function CanUse(character As ICharacter, item As IItem) As Boolean
+        Return character.Cell.HasBalcony
+    End Function
 End Class

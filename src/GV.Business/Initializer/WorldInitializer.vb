@@ -22,6 +22,8 @@
         cell.SetName("Gorachan's Apartment")
         cell.Metadata(Metadatas.MoveToText) = "Return to Gorachan's Apartment"
         cell.Flag(FlagTypes.KnownLocation) = True
+        cell.Flag(FlagTypes.Bed) = True
+        cell.Flag(FlagTypes.Balcony) = True
         Return cell
     End Function
 

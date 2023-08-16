@@ -2,6 +2,14 @@
 
 Friend Module CellExtensions
     <Extension>
+    Friend Function HasBed(cell As ICell) As Boolean
+        Return cell.Flag(FlagTypes.Bed)
+    End Function
+    <Extension>
+    Friend Function HasBalcony(cell As ICell) As Boolean
+        Return cell.Flag(FlagTypes.Balcony)
+    End Function
+    <Extension>
     Friend Function MoveToText(cell As ICell) As String
         Return cell.Metadata(Metadatas.MoveToText)
     End Function

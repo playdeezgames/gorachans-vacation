@@ -20,8 +20,8 @@ Friend Module ItemExtensions
                End Function
     End Function
     <Extension>
-    Function CanBeUsed(item As IItem) As Boolean
-        Return item.Flag(FlagTypes.CanBeUsed)
+    Function CanBeUsed(item As IItem, character As ICharacter) As Boolean
+        Return item.Flag(FlagTypes.CanBeUsed) AndAlso item.Descriptor.CanUse(character, item)
     End Function
     <Extension>
     Function Descriptor(item As IItem) As ItemTypeDescriptor
@@ -33,8 +33,6 @@ Friend Module ItemExtensions
     End Sub
     <Extension>
     Friend Sub Reset(item As IItem)
-        If item.CanBeUsed Then
-            item.SetUsedToday(False)
-        End If
+        item.SetUsedToday(False)
     End Sub
 End Module

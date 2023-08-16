@@ -7,4 +7,8 @@
         item.SetUsedToday(True)
         Return True
     End Function
+
+    Friend Overrides Function CanUse(character As ICharacter, item As IItem) As Boolean
+        Return character.Cell.HasBed
+    End Function
 End Class
