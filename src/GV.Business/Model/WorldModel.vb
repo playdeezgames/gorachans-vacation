@@ -53,24 +53,43 @@
         Return result
     End Function
 
+    Private grades As IReadOnlyList(Of String) = New List(Of String) From
+        {
+            "S", "A", "B", "C", "D", "F"
+        }
+
     Private Function ShowBackToWork(outputter As Action(Of String)) As IReadOnlyDictionary(Of String, Func(Of Boolean))
         outputter("Back to work!")
         outputter($"Final stress level: {world.Avatar.Stress}")
         If world.Avatar.OverStress > 0 Then
             outputter($"Overstress: {world.Avatar.OverStress}")
         End If
-        'TODO: grading S,A,B,C,D, F
-        'S: stress=0
-        'A: stress<=25
-        'B: stress<=50
-        'C: stress<=75
-        'D: stress<=100
-        'F: D, plus overstress
-        'overstress<0, +1 rank
-        'overstress>0, -1 rank
+        Dim grade As Integer
+        Select Case world.Avatar.Stress
+            Case Is <= 0
+                grade = 0
+            Case Is <= 25
+                grade = 1
+            Case Is <= 50
+                grade = 2
+            Case Is <= 75
+                grade = 3
+            Case Else
+                grade = 4
+        End Select
+        If world.Avatar.OverStress < 0 Then
+            grade = Math.Max(0, grade - 1)
+        End If
+        If world.Avatar.OverStress > 0 Then
+            grade = Math.Min(5, grade + 1)
+        End If
+        outputter($"Final Grade: {grades(grade)}")
         Return New Dictionary(Of String, Func(Of Boolean)) From
             {
-                {"All done!", Function() False}
+                {"All done!", Function()
+                                  AbandonWorld()
+                                  Return False
+                              End Function}
             }
     End Function
 
